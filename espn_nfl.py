@@ -23,7 +23,12 @@ if type(sys.argv[2]) != int:
     print("Invalid year")
     sys.exit(1)
 
-response = requests.get(f'https://www.espn.com.mx/futbol-americano/nfl/resultados/_/semana/{sys.argv[1]}/ano/{sys.argv[2]}/tipodetemporada/2')
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36',
+    'accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+}
+
+response = requests.get(f'https://www.espn.com.mx/futbol-americano/nfl/resultados/_/semana/{sys.argv[1]}/ano/{sys.argv[2]}/tipodetemporada/2', headers=headers)
 
 scoreboard = BeautifulSoup(response.text, "html.parser")
 
